@@ -157,6 +157,10 @@ def decide(idx, text):
     s2 = scored[1][0][0] if len(scored) > 1 else -99
     if conf1:
         return dict(decision="REVIEW", patient=best, reason=conf1, urgent=urgent, best=best)
+    clash = [w for w in why1 if w in ("first name differs", "surname not found", "DOB differs")]
+    if clash:   # identifiers say one person, the name or DOB on the page says another
+        return dict(decision="REVIEW", patient=best, urgent=urgent, best=best,
+                    reason=f"identifiers match {idx.p[best]['first']} {idx.p[best]['last']} but {clash[0]}")
     if s1 < T:
         return dict(decision="REVIEW", patient=best, reason=f"weak match ({s1:.1f}): " + "; ".join(why1), urgent=urgent, best=best)
     if s1 - s2 < M:

@@ -30,7 +30,8 @@ def run(which):
                     r["urgent"] += 1
                     r["urgent_found"] += o["urgent"]
                 if m == "gated" and o["decision"] == "REVIEW":
-                    k = o["reason"].split(":")[0].split("(")[0].strip()
+                    k = ("name or DOB disagrees with identifiers" if o["reason"].startswith("identifiers match")
+                         else o["reason"].split(":")[0].split("(")[0].strip())
                     reasons[k] = reasons.get(k, 0) + 1
     return dict(set=which, results=res, review_reasons=reasons)
 

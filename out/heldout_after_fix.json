@@ -19,7 +19,7 @@
   },
   "gated": {
    "docs": 5000,
-   "auto": 4026,
+   "auto": 3913,
    "misfiled": 0,
    "foreign_auto": 0,
    "urgent": 95,
@@ -28,7 +28,8 @@
  },
  "review_reasons": {
   "no matching patient in this clinic": 740,
-  "weak match": 212,
-  "two close candidates": 22
+  "weak match": 145,
+  "two close candidates": 20,
+  "name or DOB disagrees with identifiers": 182
  }
 }
