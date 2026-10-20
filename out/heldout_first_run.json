@@ -1,0 +1,34 @@
+{
+ "set": "heldout",
+ "results": {
+  "exact": {
+   "docs": 5000,
+   "auto": 2772,
+   "misfiled": 1,
+   "foreign_auto": 1,
+   "urgent": 95,
+   "urgent_found": 62
+  },
+  "best": {
+   "docs": 5000,
+   "auto": 4979,
+   "misfiled": 728,
+   "foreign_auto": 719,
+   "urgent": 95,
+   "urgent_found": 62
+  },
+  "gated": {
+   "docs": 5000,
+   "auto": 4030,
+   "misfiled": 1,
+   "foreign_auto": 1,
+   "urgent": 95,
+   "urgent_found": 62
+  }
+ },
+ "review_reasons": {
+  "no matching patient in this clinic": 739,
+  "weak match": 209,
+  "two close candidates": 22
+ }
+}

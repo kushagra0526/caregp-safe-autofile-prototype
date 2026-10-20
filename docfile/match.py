@@ -10,7 +10,7 @@ from . import ids, clinic
 
 T, M = 9.0, 4.0
 MON = {m.lower(): i + 1 for i, m in enumerate("jan feb mar apr may jun jul aug sep oct nov dec".split())}
-CRIT = re.compile(r"critical|\b(hh|ll)\b|phoned to|urgent|panic|call(ed)? (the )?(gp|doctor)|immediate", re.I)
+CRIT = re.compile(r"critical|\b(hh|ll)\b|\b[hl]\*|phoned to|urgent|panic|call(ed)? (the )?(gp|doctor)|immediate|action (today|now|urgently)", re.I)
 
 
 def edit1(a, b):
@@ -62,7 +62,9 @@ def extract(text):
         num = a + b + c
         med.append((num, ids.medicare_ok(num), int(irn) if irn else None))
     ihi = [x for x in re.findall(r"\b(8003\d{12})\b", t)]
-    words = [w.lower() for w in re.findall(r"[A-Za-z]+", text)]
+    # clinicians' names ("Dear Dr Patel", "Regards, Dr Wu") are not patient names
+    no_dr = re.sub(r"\b(Dr|Doctor|Prof)\.?\s+[A-Z][A-Za-z'-]+(\s+[A-Z][A-Za-z'-]+)?", " ", text)
+    words = [w.lower() for w in re.findall(r"[A-Za-z]+", no_dr)]
     crit = bool(CRIT.search(text))
     return dict(dates=dates(t), medicare=med, ihi=ihi, words=words, critical=crit)
 
