@@ -1,0 +1,8 @@
+{
+  "note": "Frozen before the first held-out run. Dev used docs.DEV (path/rad/letter/discharge templates), clinics 1-5. Held-out: document layouts never run during development (pipe-separated lab result, email body, fax cover sheet, plus letters), twice the OCR noise, more nicknames and initials, IRN missing half the time, more day/month swaps, US-style and dotted dates, 15% documents for people who are not patients here, and new critical-result wording and flags.",
+  "seeds": [101, 105],
+  "cfg": {"templates": ["pathx", "email", "fax_cover", "letter"], "ocr": 0.04, "nick": 0.25, "initial": 0.2, "irn_missing": 0.5,
+          "swap_dm": 0.05, "foreign": 0.15, "dob_fmt": ["mdy_text", "dotted", "dmy", "dmy_short"], "critical": 0.08,
+          "crit_phrases": ["Panic value - result phoned to on-call doctor", "Result outside critical limits", "Please action today"],
+          "flags": ["H*", "L*"]}
+}
